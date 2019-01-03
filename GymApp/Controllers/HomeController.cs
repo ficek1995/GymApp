@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace GymApp.Controllers
 {
-	public class HomeController : Controller
+	public partial class HomeController : Controller
 	{
-		public ActionResult Index()
+		public virtual ActionResult Index()
 		{
 			return View();
 		}
 
-		public ActionResult About()
+		public virtual ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
 
 			return View();
 		}
 
-		public ActionResult Contact()
+		public virtual ActionResult Payments()
+		{
+
+			return View(MVC.Home.Views.Payments);
+		}
+
+		public virtual ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
 
