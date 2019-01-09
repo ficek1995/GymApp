@@ -46,5 +46,40 @@ namespace GymApp.Services
             }
         }
 
+        public static void JoinToLesson(long lessonId, string userId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                ApplicationUser user = new ApplicationUser { Id = userId };
+                context.Users.Add(user);
+                context.Users.Attach(user);
+
+                Lesson lesson = new Lesson { Id = lessonId };
+                context.Lessons.Add(lesson);
+                context.Lessons.Attach(lesson);
+
+                user.Lessons.Add(lesson);
+
+                context.SaveChanges();
+            }
+        }
+
+        public static int GetLessonUsersCount(long lessonId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var result = (
+                    from a in context.Users
+            from b in a.Lessons
+            join c in context.Users on b.UserId equals c.Id
+                    where b.Id == lessonId
+                    select new 
+                    {
+                        ID = c.Id,
+                    }).ToList().Count();
+
+                return result;
+            }
+        }
     }
 }

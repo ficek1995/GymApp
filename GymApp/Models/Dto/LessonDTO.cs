@@ -20,5 +20,6 @@ namespace GymApp.Models.Dto
         public string end { get; set; }
         public bool editable { get; set; }
         public string color { get; set; }
+        public string description { get; set; }
     }
 }

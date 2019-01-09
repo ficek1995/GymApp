@@ -69,10 +69,6 @@ namespace GymApp.Controllers
             LessonsService.Add(entity, System.Web.HttpContext.Current.User.Identity.GetUserId());
             return Json(true);
         }
-        //public virtual ActionResult Calendar()
-        //{
-        //	//return View(MVC.Schedule.Views.Calendar);
-        //}
 
     }
 }

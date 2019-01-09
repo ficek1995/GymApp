@@ -59,6 +59,12 @@ namespace GymApp.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult JoinLesson()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.JoinLesson);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -79,6 +85,7 @@ namespace GymApp.Controllers
             public readonly string About = "About";
             public readonly string GetEvents = "GetEvents";
             public readonly string Schedule = "Schedule";
+            public readonly string JoinLesson = "JoinLesson";
             public readonly string Payments = "Payments";
             public readonly string Contact = "Contact";
         }
@@ -90,11 +97,20 @@ namespace GymApp.Controllers
             public const string About = "About";
             public const string GetEvents = "GetEvents";
             public const string Schedule = "Schedule";
+            public const string JoinLesson = "JoinLesson";
             public const string Payments = "Payments";
             public const string Contact = "Contact";
         }
 
 
+        static readonly ActionParamsClass_JoinLesson s_params_JoinLesson = new ActionParamsClass_JoinLesson();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_JoinLesson JoinLessonParams { get { return s_params_JoinLesson; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_JoinLesson
+        {
+            public readonly string lessonId = "lessonId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -163,6 +179,18 @@ namespace GymApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Schedule);
             ScheduleOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void JoinLessonOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long lessonId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult JoinLesson(long lessonId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.JoinLesson);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lessonId", lessonId);
+            JoinLessonOverride(callInfo, lessonId);
             return callInfo;
         }
 

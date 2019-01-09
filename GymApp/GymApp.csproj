@@ -273,6 +273,14 @@
     <Compile Include="Migrations\201901091646493_add_colors.Designer.cs">
       <DependentUpon>201901091646493_add_colors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901091730505_test.cs" />
+    <Compile Include="Migrations\201901091730505_test.Designer.cs">
+      <DependentUpon>201901091730505_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091738191_Fix.cs" />
+    <Compile Include="Migrations\201901091738191_Fix.Designer.cs">
+      <DependentUpon>201901091738191_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\LessonDTO.cs" />
@@ -438,6 +446,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901091646493_add_colors.resx">
       <DependentUpon>201901091646493_add_colors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091730505_test.resx">
+      <DependentUpon>201901091730505_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091738191_Fix.resx">
+      <DependentUpon>201901091738191_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

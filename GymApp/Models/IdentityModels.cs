@@ -1,6 +1,7 @@
 ﻿using GymApp.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -11,7 +12,13 @@ namespace GymApp.Models
 	// You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 	public class ApplicationUser : IdentityUser
 	{
-		[Required]
+
+        public ApplicationUser()
+        {
+            this.Lessons = new HashSet<Lesson>();
+        }
+
+        [Required]
 		public string FirstName { get; set; }
 		[Required]
 		public string LastName { get; set; }
@@ -24,6 +31,9 @@ namespace GymApp.Models
         public bool IsTrainer { get; set; }
 
         public string Color { get; set; }
+
+        public virtual ICollection<Lesson> Lessons { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{
@@ -57,6 +67,20 @@ namespace GymApp.Models
 		public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); 
+            modelBuilder.Entity<Lesson>()
+                        .HasMany(s => s.Users)
+                        .WithMany(c => c.Lessons)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("LessonRefId");
+                            cs.MapRightKey("UserRefId");
+                            cs.ToTable("LessonsUsers");
+                        });
+
+        }
 
         public static ApplicationDbContext Create()
 		{

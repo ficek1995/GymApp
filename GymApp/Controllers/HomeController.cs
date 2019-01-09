@@ -1,5 +1,6 @@
 ﻿using GymApp.Models.Dto;
 using GymApp.Services;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -25,6 +26,7 @@ namespace GymApp.Controllers
             var lessons = LessonsService.GetList();
             foreach (var item in lessons)
             {
+                var usercount = LessonsService.GetLessonUsersCount(item.Id);
                 var user = UserService.Get(item.UserId);
                 var userName = $"{user.FirstName} {user.LastName}";
                 var color = user.Color;
@@ -32,11 +34,10 @@ namespace GymApp.Controllers
                 {
                     id = item.Id,
                     editable = false,
-                    title = $"{userName} - {item.Title}",
+                    title = $"{userName} - {item.Title} \n Na zajęcia zapisało się {usercount} osób",
                     start = item.Start.ToString("s"),
                     end = item.End.Value.ToString("s"),
-                    color = color
-
+                    color = color,
                 });
             }
             return Json(lessonsResponse, JsonRequestBehavior.AllowGet);
@@ -45,6 +46,13 @@ namespace GymApp.Controllers
         public virtual ActionResult Schedule()
         {
             return View(MVC.Schedule.Views.Calendar);
+        }
+
+        [AjaxOnly]
+        public virtual ActionResult JoinLesson(long lessonId)
+        {
+            LessonsService.JoinToLesson(lessonId, User.Identity.GetUserId());
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         public virtual ActionResult Payments()

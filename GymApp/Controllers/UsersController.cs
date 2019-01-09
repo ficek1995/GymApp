@@ -1,4 +1,5 @@
-﻿using GymApp.Helpers;
+﻿using AutoMapper;
+using GymApp.Helpers;
 using GymApp.Models;
 using GymApp.Services;
 using GymApp.ViewsModels;
