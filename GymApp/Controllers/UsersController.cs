@@ -5,6 +5,7 @@ using GymApp.ViewsModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,6 +79,8 @@ namespace GymApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                var random = new Random();
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -86,8 +89,11 @@ namespace GymApp.Controllers
                     LastName = model.LastName,
                     PhoneNumber = model.PhoneNumber,
                     IsTrainer = model.IsTrainer,
-                    Deleted = false
+                    Deleted = false,
+                    Color = model.IsTrainer ? string.Format("#{0:X6}", random.Next(0x1000000) & 0x7F7F7F) : string.Empty
                 };
+
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (model.IsTrainer == true)
                 {

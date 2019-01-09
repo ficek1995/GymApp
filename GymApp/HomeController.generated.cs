@@ -77,6 +77,8 @@ namespace GymApp.Controllers
         {
             public readonly string Index = "Index";
             public readonly string About = "About";
+            public readonly string GetEvents = "GetEvents";
+            public readonly string Schedule = "Schedule";
             public readonly string Payments = "Payments";
             public readonly string Contact = "Contact";
         }
@@ -86,6 +88,8 @@ namespace GymApp.Controllers
         {
             public const string Index = "Index";
             public const string About = "About";
+            public const string GetEvents = "GetEvents";
+            public const string Schedule = "Schedule";
             public const string Payments = "Payments";
             public const string Contact = "Contact";
         }
@@ -137,6 +141,28 @@ namespace GymApp.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.About);
             AboutOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetEventsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetEvents()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetEvents);
+            GetEventsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ScheduleOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Schedule()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Schedule);
+            ScheduleOverride(callInfo);
             return callInfo;
         }
 

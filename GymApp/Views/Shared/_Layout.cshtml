@@ -38,6 +38,10 @@
                     {
                         <li>@Html.ActionLink("Grafik", MVC.TrainerSchedule.Schedule())</li>
                     }
+                    @if (!User.IsInRole("Trener"))
+                    {
+                        <li>@Html.ActionLink("Plan Zajęć", MVC.Home.Schedule())</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

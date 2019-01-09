@@ -29,13 +29,16 @@ namespace GymApp.Controllers
             {
                 var user = UserService.Get(item.UserId);
                 var userName =$"{user.FirstName} {user.LastName}";
+                var color = user.Color;
                 lessonsResponse.Add(new LessonResponse
                 {
                     id = item.Id,
                     editable = false,
                     title = $"{userName} - {item.Title}",
                     start = item.Start.ToString("s"),
-                    end = item.End.Value.ToString("s")
+                    end = item.End.Value.ToString("s"),
+                    color = color
+
                 }); 
             }
             return Json(lessonsResponse, JsonRequestBehavior.AllowGet);

@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201812191857389_modyfikacja 3.Designer.cs">
       <DependentUpon>201812191857389_modyfikacja 3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901091646493_add_colors.cs" />
+    <Compile Include="Migrations\201901091646493_add_colors.Designer.cs">
+      <DependentUpon>201901091646493_add_colors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\LessonDTO.cs" />
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812191857389_modyfikacja 3.resx">
       <DependentUpon>201812191857389_modyfikacja 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091646493_add_colors.resx">
+      <DependentUpon>201901091646493_add_colors.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

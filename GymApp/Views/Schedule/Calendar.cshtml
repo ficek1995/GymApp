@@ -1,20 +1,79 @@
-﻿
-@{
-    ViewBag.Title = "Calendar";
-}
+﻿<script>
 
-<h2>Kalendarz</h2>
+    $(document).ready(function () {
+        $.ajax({
+            url: "@Url.Action(MVC.Home.GetEvents())",
+             method: "get",
+            success: function (data) {
 
-<div class="container" style="margin: auto; width: 50%; height: 100%; display: flex; flex-direction: row; justify-content: center;">
-    <div id="target">
-    </div>
-</div>
-<script>var settings = {
-                triggerMethod: "click-click",
-            }
-            $('#target').weekly_schedule(settings);
-            $('.schedule').on('selectionmade', function() {
-                console.log("Selection Made");
-            }).on('selectionremoved', function() {
-                console.log("Selection Removed");
-            });</script>
+
+
+                $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'agendaWeek,agendaDay'
+            },
+            defaultDate: "@DateTime.Now.ToString("dd-MM-yyyy")",
+                    navLinks: true, // can click day/week names to navigate views
+                    selectable: false,
+                    selectHelper: false,
+                    defaultView: 'agendaWeek',
+                    eventClick: function (calEvent, jsEvent, view) {
+
+
+
+                            $.ajax({
+                                url: "@Url.Action(MVC.TrainerSchedule.CanDelete())?id=" + calEvent.id,
+                                method: "get",
+                                success: function (data) {
+                                    if (data) {
+                                        var result = confirm("Czy napewno chcesz Usunąć zajęcia:" + calEvent.title)
+                                        if (result) {
+                                            $.ajax({
+                                                url: "@Url.Action(MVC.TrainerSchedule.Delete())?id=" + calEvent.id,
+                                                method: "get",
+                                                success: function () {
+                                                    location.reload();
+                                                }
+                                            })
+
+                                        }
+                                    }
+                                }
+                            });
+
+
+
+                    },
+            eventLimit: true, // allow "more" link when too many events
+            events: data
+
+        });
+
+
+
+             }
+                    });
+
+
+
+
+    });
+
+
+
+</script>
+<style>
+
+
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+        margin-top: 400px;
+    }
+</style>
+
+
+<div id='calendar'></div>
