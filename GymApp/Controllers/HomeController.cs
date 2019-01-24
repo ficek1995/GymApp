@@ -55,6 +55,14 @@ namespace GymApp.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+
+        [AjaxOnly]
+        public virtual ActionResult UserJoinedToLesson(long lessonId)
+        {
+            var joined = LessonsService.JoinedToLesson(lessonId, User.Identity.GetUserId());
+            return Json(new { msg = joined }, JsonRequestBehavior.AllowGet);
+        }
+
         public virtual ActionResult Payments()
 		{
 

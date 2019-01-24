@@ -14,7 +14,6 @@
                 center: 'title',
                 right: 'agendaWeek,agendaDay'
             },
-            defaultDate: "@DateTime.Now.ToString("dd-MM-yyyy")",
                     navLinks: true, // can click day/week names to navigate views
                     selectable: false,
                     selectHelper: false,
@@ -24,15 +23,27 @@
 
 
                             $.ajax({
-                                url: "@Url.Action(MVC.Home.JoinLesson())?lessonId=" + calEvent.id,
+                                url: "@Url.Action(MVC.Home.UserJoinedToLesson())?lessonId=" + calEvent.id,
                                 method: "get",
                                 success: function (data) {
-                                    alert("Dołączyłeś do wydarzenia");
-                                    location.reload();
+                                    if (data.msg == true) {
+                                                        $.ajax({
+                                            url: "@Url.Action(MVC.Home.JoinLesson())?lessonId=" + calEvent.id,
+                                            method: "get",
+                                            success: function () {
+                                                alert("Dołączyłeś do zajęć");
+                                            location.reload();
+                                            }
+                                        });
                                     }
-                            });
+                                    else
+                                    {
+                                        alert("Już jesteś zapisany na te zajęcia");
+                                    }
 
-
+                                    }
+                                });
+                                
 
                     },
             eventLimit: true, // allow "more" link when too many events

@@ -65,6 +65,12 @@ namespace GymApp.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.JoinLesson);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UserJoinedToLesson()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserJoinedToLesson);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -86,6 +92,7 @@ namespace GymApp.Controllers
             public readonly string GetEvents = "GetEvents";
             public readonly string Schedule = "Schedule";
             public readonly string JoinLesson = "JoinLesson";
+            public readonly string UserJoinedToLesson = "UserJoinedToLesson";
             public readonly string Payments = "Payments";
             public readonly string Contact = "Contact";
         }
@@ -98,6 +105,7 @@ namespace GymApp.Controllers
             public const string GetEvents = "GetEvents";
             public const string Schedule = "Schedule";
             public const string JoinLesson = "JoinLesson";
+            public const string UserJoinedToLesson = "UserJoinedToLesson";
             public const string Payments = "Payments";
             public const string Contact = "Contact";
         }
@@ -108,6 +116,14 @@ namespace GymApp.Controllers
         public ActionParamsClass_JoinLesson JoinLessonParams { get { return s_params_JoinLesson; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_JoinLesson
+        {
+            public readonly string lessonId = "lessonId";
+        }
+        static readonly ActionParamsClass_UserJoinedToLesson s_params_UserJoinedToLesson = new ActionParamsClass_UserJoinedToLesson();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UserJoinedToLesson UserJoinedToLessonParams { get { return s_params_UserJoinedToLesson; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UserJoinedToLesson
         {
             public readonly string lessonId = "lessonId";
         }
@@ -191,6 +207,18 @@ namespace GymApp.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.JoinLesson);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lessonId", lessonId);
             JoinLessonOverride(callInfo, lessonId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UserJoinedToLessonOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, long lessonId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UserJoinedToLesson(long lessonId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserJoinedToLesson);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lessonId", lessonId);
+            UserJoinedToLessonOverride(callInfo, lessonId);
             return callInfo;
         }
 
