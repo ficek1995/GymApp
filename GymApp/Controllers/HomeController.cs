@@ -1,7 +1,9 @@
-﻿using GymApp.Models.Dto;
+﻿using GymApp.Models;
+using GymApp.Models.Dto;
 using GymApp.Services;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace GymApp.Controllers
@@ -10,7 +12,20 @@ namespace GymApp.Controllers
 	{
 		public virtual ActionResult Index()
 		{
-			return View();
+            using (var context = new ApplicationDbContext())
+            {
+               var entity = context.Messages.SingleOrDefault();
+               if(entity == null)
+                {
+                    ViewBag.info = string.Empty; 
+
+                }
+                else
+                {
+                    ViewBag.info= entity.Text;
+                }
+            }
+            return View();
 		}
 
 		public virtual ActionResult About()
@@ -62,12 +77,6 @@ namespace GymApp.Controllers
             var joined = LessonsService.JoinedToLesson(lessonId, User.Identity.GetUserId());
             return Json(new { msg = joined }, JsonRequestBehavior.AllowGet);
         }
-
-        public virtual ActionResult Payments()
-		{
-
-			return View(MVC.Home.Views.Payments);
-		}
 
 		public virtual ActionResult Contact()
 		{

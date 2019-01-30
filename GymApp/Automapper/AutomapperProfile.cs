@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GymApp.Models;
 using GymApp.Models.Dto;
+using GymApp.Models.ViewsModels;
 using GymApp.ViewsModels;
 
 namespace GymApp.Automapper
@@ -12,6 +13,8 @@ namespace GymApp.Automapper
 			CreateMap<ApplicationUser, UserViewModel>();
             CreateMap<LessonDTO, Lesson>();
             CreateMap<Lesson, LessonDTO>();
+            CreateMap<Message, MessageViewModel>();
+            CreateMap<MessageViewModel, Message>().ForSourceMember(x => x.Id, opt => opt.Ignore());
         }
     }
 }

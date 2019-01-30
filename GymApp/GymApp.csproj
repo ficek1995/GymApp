@@ -205,6 +205,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Automapper\AutomapperProfile.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TrainerScheduleController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -281,15 +282,22 @@
     <Compile Include="Migrations\201901091738191_Fix.Designer.cs">
       <DependentUpon>201901091738191_Fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901301745290_Wiadomosc .cs" />
+    <Compile Include="Migrations\201901301745290_Wiadomosc .Designer.cs">
+      <DependentUpon>201901301745290_Wiadomosc .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\LessonDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketType.cs" />
     <Compile Include="Models\UserLesson.cs" />
+    <Compile Include="Models\ViewsModels\MessageReadViewModel.cs" />
+    <Compile Include="Models\ViewsModels\MessageViewModel.cs" />
     <Compile Include="Models\ViewsModels\TicketViewModel.cs" />
     <Compile Include="Models\ViewsModels\UsersListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -300,6 +308,9 @@
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\TicketsService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="SettingsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -321,6 +332,7 @@
     <Compile Include="Models\ViewsModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\image.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -388,11 +400,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="T4MVC.tt.hooks.t4" />
     <Content Include="Views\Users\List.cshtml" />
-    <Content Include="Views\Home\Payments.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Schedule\Calendar.cshtml" />
     <Content Include="Views\TrainerSchedule\Edit.cshtml" />
+    <Content Include="Views\Settings\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -455,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901091738191_Fix.resx">
       <DependentUpon>201901091738191_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901301745290_Wiadomosc .resx">
+      <DependentUpon>201901301745290_Wiadomosc .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

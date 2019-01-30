@@ -93,7 +93,6 @@ namespace GymApp.Controllers
             public readonly string Schedule = "Schedule";
             public readonly string JoinLesson = "JoinLesson";
             public readonly string UserJoinedToLesson = "UserJoinedToLesson";
-            public readonly string Payments = "Payments";
             public readonly string Contact = "Contact";
         }
 
@@ -106,7 +105,6 @@ namespace GymApp.Controllers
             public const string Schedule = "Schedule";
             public const string JoinLesson = "JoinLesson";
             public const string UserJoinedToLesson = "UserJoinedToLesson";
-            public const string Payments = "Payments";
             public const string Contact = "Contact";
         }
 
@@ -140,12 +138,10 @@ namespace GymApp.Controllers
                 public readonly string About = "About";
                 public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
-                public readonly string Payments = "Payments";
             }
             public readonly string About = "~/Views/Home/About.cshtml";
             public readonly string Contact = "~/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string Payments = "~/Views/Home/Payments.cshtml";
         }
     }
 
@@ -219,17 +215,6 @@ namespace GymApp.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserJoinedToLesson);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lessonId", lessonId);
             UserJoinedToLessonOverride(callInfo, lessonId);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void PaymentsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Payments()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Payments);
-            PaymentsOverride(callInfo);
             return callInfo;
         }
 

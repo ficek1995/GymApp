@@ -9,11 +9,14 @@
 
 
                 $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'agendaWeek,agendaDay'
-            },
+                    minTime: "8:00:00",
+                    maxTime: "22:00:00",
+                    locale: 'pl',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'agendaWeek,agendaDay'
+                    },
                     navLinks: true, // can click day/week names to navigate views
                     selectable: false,
                     selectHelper: false,

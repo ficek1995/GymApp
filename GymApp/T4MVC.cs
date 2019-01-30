@@ -31,6 +31,7 @@ public static partial class MVC
     public static GymApp.Controllers.HomeController Home = new GymApp.Controllers.T4MVC_HomeController();
     public static GymApp.Controllers.ManageController Manage = new GymApp.Controllers.T4MVC_ManageController();
     public static GymApp.Controllers.ScheduleController Schedule = new GymApp.Controllers.T4MVC_ScheduleController();
+    public static GymApp.Controllers.SettingsController Settings = new GymApp.Controllers.T4MVC_SettingsController();
     public static GymApp.Controllers.TicketsController Tickets = new GymApp.Controllers.T4MVC_TicketsController();
     public static GymApp.Controllers.TrainerScheduleController TrainerSchedule = new GymApp.Controllers.T4MVC_TrainerScheduleController();
     public static GymApp.Controllers.UsersController Users = new GymApp.Controllers.T4MVC_UsersController();
@@ -121,6 +122,7 @@ namespace Links
         public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
         public static readonly string bootstrap_min_css_map = Url("bootstrap.min.css.map");
+        public static readonly string image_jpg = Url("image.jpg");
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
     }
 
