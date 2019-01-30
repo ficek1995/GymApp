@@ -28,11 +28,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Strona Główna", "Index", "Home")</li>
                     @if (User.IsInRole("Administrator"))
                     {
                         <li>@Html.ActionLink("Użytkownicy", MVC.Users.List())</li>
-                        <li>@Html.ActionLink("Plan", MVC.Schedule.Index())</li>
                     }
                     @if (User.IsInRole("Trener"))
                     {

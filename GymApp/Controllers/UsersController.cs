@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GymApp.Helpers;
 using GymApp.Models;
+using GymApp.Models.ViewsModels;
 using GymApp.Services;
 using GymApp.ViewsModels;
 using Microsoft.AspNet.Identity;
@@ -52,13 +53,21 @@ namespace GymApp.Controllers
 
         public virtual ActionResult List()
         {
-            var users = UserService.GetAll().MapTo<List<UserViewModel>>();
-            var currentUser = users.Where(x => x.Id == User.Identity.GetUserId()).SingleOrDefault();
+            var allUsers = UserService.GetAll().MapTo<List<UserViewModel>>();
+            var currentUser = allUsers.Where(x => x.Id == User.Identity.GetUserId()).SingleOrDefault();
             if (currentUser != null)
             {
-                users.Remove(currentUser);
+                allUsers.Remove(currentUser);
             }
-            return View(MVC.Users.Views.List, users);
+
+            var users = allUsers.Where(x => x.IsTrainer == false).OrderBy(x => x.FirstName).ThenBy(x => x.LastName).ToList();
+            var trainers = allUsers.Where(x => x.IsTrainer == true).OrderBy(x => x.FirstName).ThenBy(x => x.LastName).ToList();
+            var model = new UsersListViewModel
+            {
+                Users = users,
+                Trainers = trainers
+            };
+            return View(MVC.Users.Views.List, model);
         }
 
         // GET: Users/Details/5
