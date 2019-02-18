@@ -299,6 +299,7 @@
     <Compile Include="Models\ViewsModels\MessageReadViewModel.cs" />
     <Compile Include="Models\ViewsModels\MessageViewModel.cs" />
     <Compile Include="Models\ViewsModels\TicketViewModel.cs" />
+    <Compile Include="Models\ViewsModels\TrainerContactViewModel.cs" />
     <Compile Include="Models\ViewsModels\UsersListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleController.generated.cs">

@@ -1,17 +1,20 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Kontakt";
 }
-<h2>@ViewBag.Title.</h2>
+@model  IEnumerable<GymApp.Models.ViewsModels.TrainerContactViewModel>
 <h3>@ViewBag.Message</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    Administracja<br />
+    <a href="mailto:gymappwebmaster@gmail.com">gymappwebmaster@gmail.com</a>
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <h2>Kontakt do Trenerów</h2>
+    @foreach (var trainer in Model)
+    {
+        <strong>@trainer.FirstName @trainer.LastName:</strong> <br />
+    <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:@trainer.Email">@trainer.Email</a><br /> 
+    <i class="glyphicon glyphicon-phone"></i> @trainer.Phone<br /><br />
+    }
 </address>

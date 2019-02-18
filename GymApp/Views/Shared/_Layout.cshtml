@@ -44,7 +44,12 @@
                     {
                         <li>@Html.ActionLink("Plan Zajęć", MVC.Home.Schedule())</li>
                     }
-                </ul>
+                    @if (!User.IsInRole("Trener") && !User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("O Aplikacji", MVC.Home.About())</li>
+                        <li>@Html.ActionLink("Kontakt", MVC.Home.Contact())</li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

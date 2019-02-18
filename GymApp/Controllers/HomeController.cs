@@ -1,5 +1,6 @@
 ﻿using GymApp.Models;
 using GymApp.Models.Dto;
+using GymApp.Models.ViewsModels;
 using GymApp.Services;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace GymApp.Controllers
 
 		public virtual ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
+			ViewBag.Message = "O aplikacji";
 
 			return View();
 		}
@@ -81,9 +82,16 @@ namespace GymApp.Controllers
 		public virtual ActionResult Contact()
 		{
 
-			ViewBag.Message = "Your contact page.";
+			ViewBag.Message = "Kontakt";
 
-			return View();
+            var contacts = UserService.GetAll().Where(x => x.IsTrainer && x.Deleted == false).Select(x => new TrainerContactViewModel {
+                Email = x.Email,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Phone = x.PhoneNumber })
+                .ToList();
+
+            return View(MVC.Home.Views.Contact, contacts);
 		}
 	}
 }

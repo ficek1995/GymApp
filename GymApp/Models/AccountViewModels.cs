@@ -70,23 +70,26 @@ namespace GymApp.Models
 		public string Email { get; set; }
 
 		[Required]
-		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+		[StringLength(100, ErrorMessage = "Za krótkie hasło", MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Hasło")]
 		public string Password { get; set; }
 
 		[DataType(DataType.Password)]
 		[Display(Name = "Potwierdź")]
-		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[Compare("Password", ErrorMessage = "Hasła nie są takie same.")]
 		public string ConfirmPassword { get; set; }
 		[Required]
-		public string FirstName { get; set; }
+        [Display(Name = "Imię")]
+        public string FirstName { get; set; }
 		[Required]
-		public string LastName { get; set; }
+        [Display(Name = "Nazwisko")]
+        public string LastName { get; set; }
 		[Phone]
-		[Display(Name = "Phone Number")]
+		[Display(Name = "Numer Telefonu")]
 		public string PhoneNumber { get; set; }
 
+        [Display(Name = "Jest Trenerem")]
         public bool IsTrainer { get; set; }
 
     }
@@ -101,11 +104,11 @@ namespace GymApp.Models
 		[Required]
 		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
 		[DataType(DataType.Password)]
-		[Display(Name = "Password")]
+		[Display(Name = "Hasła")]
 		public string Password { get; set; }
 
 		[DataType(DataType.Password)]
-		[Display(Name = "Confirm password")]
+		[Display(Name = "Potwierdź Hasło")]
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
 
