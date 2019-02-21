@@ -26,3 +26,7 @@ textarea {
 {
 
 }
+.img-item {
+    width: 100% !important;
+    height: 750px !important;
+}

@@ -81,10 +81,11 @@ namespace GymApp.Controllers
 
 		public virtual ActionResult Contact()
 		{
-
 			ViewBag.Message = "Kontakt";
 
-            var contacts = UserService.GetAll().Where(x => x.IsTrainer && x.Deleted == false).Select(x => new TrainerContactViewModel {
+            var contacts = UserService.GetAll()
+                .Where(x => x.IsTrainer && x.Deleted == false)
+                .Select(x => new TrainerContactViewModel {
                 Email = x.Email,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
