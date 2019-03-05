@@ -103,7 +103,7 @@ namespace GymApp.Controllers
                     Color = model.IsTrainer ? string.Format("#{0:X6}", random.Next(0x1000000) & 0x7F7F7F) : string.Empty
                 };
 
-
+                UserService.SendHelloMail($"{model.FirstName} {model.LastName}", model.Email);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (model.IsTrainer == true)
                 {

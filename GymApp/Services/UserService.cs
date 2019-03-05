@@ -22,7 +22,17 @@ namespace GymApp.Services
 			}
 		}
 
-		public static void Remove(string id)
+        public static void SendHelloMail(string username, string email)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                {
+                    MailService.SendMail("GymApp Powiadomienie", $"Witaj {username} zostałeś nowym użytkownikiem ", email);
+                }
+            }
+        }
+
+        public static void Remove(string id)
 		{
 			using (var context = new ApplicationDbContext())
 			{

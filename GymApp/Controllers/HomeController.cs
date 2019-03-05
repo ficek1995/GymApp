@@ -50,7 +50,8 @@ namespace GymApp.Controllers
                 {
                     id = item.Id,
                     editable = false,
-                    title = $"{userName} - {item.Title} \n Na zajęcia zapisało się {usercount} osób",
+                    title = $"{item.Title}",
+                    description = $"Na zajęcia zapisało się {usercount} osób. \n Zajęcia prowadzi Trener: {userName}",
                     start = item.Start.ToString("s"),
                     end = item.End.Value.ToString("s"),
                     color = color,

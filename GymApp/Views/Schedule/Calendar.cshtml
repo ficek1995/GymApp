@@ -1,4 +1,5 @@
-﻿<script>
+﻿<h3 class="calendar">Harmonogram siłowni</h3>
+<script>
 
     $(document).ready(function () {
         $.ajax({
@@ -10,6 +11,15 @@
 
                 $('#calendar').fullCalendar({
                     minTime: "8:00:00",
+                    eventRender: function (eventObj, $el) {
+                        $el.popover({
+                            title: eventObj.title,
+                            content: eventObj.description,
+                            trigger: 'hover',
+                            placement: 'top',
+                            container: 'body'
+                        });
+                    },
                     maxTime: "22:00:00",
                     locale: 'pl',
                 header: {
@@ -68,10 +78,3 @@
 
 </script>
 <div id='calendar'></div>
-<style>
-    #calendar {
-        padding-top: 100px;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-</style>

@@ -3,6 +3,7 @@ using GymApp.Models;
 using GymApp.Models.Dto;
 using GymApp.Services;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -66,8 +67,13 @@ namespace GymApp.Controllers
         public virtual ActionResult CreateLesson(LessonDTO lesson)
         {
             var entity = Mapper.Map<Lesson>(lesson);
-            LessonsService.Add(entity, System.Web.HttpContext.Current.User.Identity.GetUserId());
-            return Json(true);
+
+            if (lesson.start >= DateTime.Now)
+            {
+                LessonsService.Add(entity, System.Web.HttpContext.Current.User.Identity.GetUserId());
+                return Json(true);
+            }
+            return Json(false);
         }
 
     }

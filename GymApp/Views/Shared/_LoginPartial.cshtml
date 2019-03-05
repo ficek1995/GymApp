@@ -25,32 +25,32 @@
             </li>
                 @if(!User.IsInRole("Administrator"))
                 {
-                <li>
+                    <li>
 
-                    <a href="#">
-                        Karnet Ważny:
-                        <span>
-                            @if (!string.IsNullOrEmpty(User.Identity.GetTicket()))
-                            {
-
-                                var asignedTo = DateTime.Parse(User.Identity.GetTicket());
-
-                                if (asignedTo > DateTime.Now)
+                        <a href="#">
+                            Karnet Ważny:
+                            <span>
+                                @if (!string.IsNullOrEmpty(User.Identity.GetTicket()))
                                 {
-                                    @asignedTo
+
+                                    var asignedTo = DateTime.Parse(User.Identity.GetTicket());
+
+                                    if (asignedTo > DateTime.Now)
+                                    {
+                                        @asignedTo
+                                    }
+                                    else
+                                    {
+                                        <text> <span class="danger">Wygasło dnia: @asignedTo </span></text>
+                                    }
                                 }
                                 else
                                 {
-                                    <text> <span class="danger">Wygasło dnia: @asignedTo </span></text>
+                                    <text>Brak Karnetu</text>
                                 }
-                            }
-                            else
-                            {
-                                <text>Brak Karnetu</text>
-                            }
-                        </span>
-                    </a>
-                </li>
+                            </span>
+                        </a>
+                    </li>
                 }
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
         </ul>

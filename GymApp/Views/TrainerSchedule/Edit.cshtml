@@ -35,8 +35,15 @@
                         url: "@Url.Action(MVC.TrainerSchedule.CreateLesson())",
                         method: "post",
                         data: eventData,
-                        success: function () {
+                        success: function (data) {
+                            if (data) {
+
                             location.reload();
+                            } else {
+                                alert("Nie można utworzyć treningu wstecz");
+                                location.reload();
+
+                            }
                         }
                     });
                 }

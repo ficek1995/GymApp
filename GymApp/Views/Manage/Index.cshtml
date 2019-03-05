@@ -1,16 +1,16 @@
 ﻿@model GymApp.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Zarządzanie kontem";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>Zmień ustawienia swojego konta</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Password:</dt>
+        <dt>Hasło:</dt>
         <dd>
             [
             @if (Model.HasPassword)
@@ -23,7 +23,7 @@
             }
             ]
         </dd>
-        <dt>External Logins:</dt>
+        <dt>Zewnętrzny login:</dt>
         <dd>
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
@@ -56,11 +56,13 @@
                 }
             </dd>
         *@
-        <dt>Two-Factor Authentication:</dt>
+        <dt>Podwójna autentykacja:</dt>
         <dd>
             <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
+                Nie posiadasz skonfigurowanych dostawców uwierzytelniania dwuskładnikowego. <br />
+                Przeczytaj <a href="https://go.microsoft.com/fwlink/?LinkId=403804"> ten artykuł </a>, <br />
+                aby uzyskać szczegółowe informacje na temat konfigurowania tej aplikacji ASP.NET, <br />
+                do obsługi uwierzytelniania dwuskładnikowego.
             </p>
             @*@if (Model.TwoFactor)
                 {
