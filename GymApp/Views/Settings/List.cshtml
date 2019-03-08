@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<GymApp.Models.ViewsModels.MessageViewModel>
+@{
+    ViewBag.Title = "View";
+}
+<h2>Informacje</h2>
+<p>
+    <a href="@Url.Action(MVC.Settings.Form())" class="btn btn-success">Dodaj Informacje</a>
+</p>
+<h2>Lista Iformacji</h2>
+<table class="table">
+    <tr>
+        <th>
+            Opis
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            
+            <td>
+                <a href="@Url.Action(MVC.Settings.Delete(item.Id))" class="btn btn-danger">Usuń</a>
+            </td>
+        </tr>
+    }
+</table>

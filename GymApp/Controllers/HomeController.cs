@@ -1,4 +1,5 @@
-﻿using GymApp.Models;
+﻿using AutoMapper;
+using GymApp.Models;
 using GymApp.Models.Dto;
 using GymApp.Models.ViewsModels;
 using GymApp.Services;
@@ -15,18 +16,10 @@ namespace GymApp.Controllers
 		{
             using (var context = new ApplicationDbContext())
             {
-               var entity = context.Messages.SingleOrDefault();
-               if(entity == null)
-                {
-                    ViewBag.info = string.Empty; 
-
-                }
-                else
-                {
-                    ViewBag.info= entity.Text;
-                }
+               var entities = context.Messages.ToList();
+                var model = Mapper.Map<List<MessageReadViewModel>>(entities);
+                return View(MVC.Home.Views.Index, model);
             }
-            return View();
 		}
 
 		public virtual ActionResult About()

@@ -1,4 +1,5 @@
-﻿using GymApp.Helpers;
+﻿using AutoMapper;
+using GymApp.Helpers;
 using GymApp.Models;
 using GymApp.Models.Dto;
 using GymApp.Models.ViewsModels;
@@ -15,22 +16,20 @@ namespace GymApp.Controllers
 	{
 		public virtual ActionResult Index()
 		{
-			return RedirectToAction(MVC.Settings.Form());
-		}
+
+            using (var context = new ApplicationDbContext())
+            {
+                var entities = context.Messages.ToList();
+                var model = Mapper.Map<List<MessageViewModel>>(entities);
+                return View(MVC.Settings.Views.List, model);
+            }
+        }
 
 		public virtual ActionResult Form()
 		{
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Messages.SingleOrDefault();
-                if(entity != null)
-                {
-                    return View(MVC.Settings.Views.Form, entity.MapTo<MessageViewModel>());
-                }
-                else
-                {
                     return View(MVC.Settings.Views.Form, new MessageViewModel());
-                }
             }
         }
 
@@ -40,25 +39,29 @@ namespace GymApp.Controllers
             
             using (var context = new ApplicationDbContext())
             {
-                var entity = context.Messages.SingleOrDefault();
-                if (entity != null)
+               var message =  new Message
                 {
-                    entity.Text = model.Text;
-                    entity.Date = DateTime.Now;
-                    context.SaveChanges();
-                    return View(MVC.Settings.Views.Form, entity.MapTo<MessageViewModel>());
-                }
-                else
-                {
-                    var message = model.MapTo<Message>();
-                    message.Date = DateTime.Now; 
-                    context.Messages.Add(message);
-                    context.SaveChanges();
-                }
+                    Text = model.Text,
+                    Date = DateTime.Now
+                };
+                context.Messages.Add(message);
+                context.SaveChanges();
+
             }
-            return View(MVC.Settings.Views.Form,model);
+            return RedirectToAction(MVC.Settings.Index());
+
         }
 
+        public virtual ActionResult Delete(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var message = context.Messages.SingleOrDefault(x => x.Id == id);
+                context.Messages.Remove(message);
+                context.SaveChanges();
 
+                return RedirectToAction(MVC.Settings.Index());
+            }
+        }
     }
 }

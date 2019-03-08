@@ -14,6 +14,9 @@ namespace GymApp.Automapper
             CreateMap<LessonDTO, Lesson>();
             CreateMap<Lesson, LessonDTO>();
             CreateMap<Message, MessageViewModel>();
+            CreateMap<Message, MessageReadViewModel>();
+            CreateMap<MessageViewModel, Message>();
+
             CreateMap<MessageViewModel, Message>().ForSourceMember(x => x.Id, opt => opt.Ignore());
         }
     }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<GymApp.Models.ViewsModels.MessageReadViewModel>
+@{
     ViewBag.Title = "Strona Główna";
 }
 
@@ -9,7 +10,6 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
@@ -19,7 +19,6 @@
                 <p>Wysoko wyspecjalizowana kadra</p>
             </div>
         </div>
-
         <div class="item">
             <img class="img-item" src="@Url.Content("~/Content/image1.jpg")" />
             <div class="carousel-caption">
@@ -27,7 +26,6 @@
                 <p>Duża różnorodność zajęć grupowych</p>
             </div>
         </div>
-
         <div class="item">
             <img class="img-item" src="@Url.Content("~/Content/image2.jpg")" />
             <div class="carousel-caption">
@@ -36,7 +34,6 @@
             </div>
         </div>
     </div>
-
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -47,20 +44,23 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-
+@foreach(var item in Model)
+{
 <div class="jumbotron">
-    <h2 style="color: #5cf442"><i class="glyphicon glyphicon-info-sign" style="color: #5cf442"></i> Informacja</h2>
-    <p>@ViewBag.info</p>
+    <h2 style="color: #5cf442"><i class="glyphicon glyphicon-info-sign" style="color: #5cf442"></i> Informacja  - @String.Format("{0:MM/dd/yyyy}", item.Date.ToString())</h2> 
+    <p>@item.Text</p>
 </div>
-
+}
 <style>
+
     .carousel-caption {
         text-shadow: 2px 2px 4px rgba(15, 15, 15, 1);
     }
-    .carousel-caption p
-    {
-        font-size: 30px;
-    }
+
+        .carousel-caption p {
+            font-size: 30px;
+        }
+
     .jumbotron p {
         font-size: 22px;
         font-weight: 300;

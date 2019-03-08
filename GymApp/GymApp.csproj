@@ -405,6 +405,7 @@
     <Content Include="Views\Schedule\Calendar.cshtml" />
     <Content Include="Views\TrainerSchedule\Edit.cshtml" />
     <Content Include="Views\Settings\Form.cshtml" />
+    <Content Include="Views\Settings\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
